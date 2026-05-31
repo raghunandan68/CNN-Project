@@ -1,5 +1,4 @@
 import streamlit as st
-import tensorflow as tf
 from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
@@ -37,7 +36,7 @@ with tab1:
         image = image.convert("RGB")
         st.image(image, caption="Uploaded Image", width=300)
         img = image.resize((128, 128))
-        img = np.array(img) / 255.0
+        img = np.array(img).astype("float32") / 255.0
         img = np.expand_dims(img, axis=0)
 
         if st.button('Predict Image'):
