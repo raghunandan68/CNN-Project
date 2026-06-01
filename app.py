@@ -43,11 +43,13 @@ with tab1:
             prediction = model.predict(img)[0][0]
             if prediction > 0.5:
                 result = "🐶 Dog"
+                confidence = prediction
             else:
                 result = "🐱 Cat"
+                confidence = 1 - prediction
             st.subheader("Prediction Result")
             st.success(result)
-            st.write(f"Confidence Score: {float(prediction):.4f}")
+            st.write(f"Confidence: {confidence*100:.2f}%")
 
 with tab2:
     st.subheader("CNN Architecture")
